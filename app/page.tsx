@@ -720,16 +720,16 @@ export default function Home() {
               </p>
               
               <div className="flex flex-wrap justify-center gap-4">
-                <motion.button
-                  onClick={() => window.location.href = '#contact-form'}
+                <motion.a
+                  href="mailto:elyees.dev@gmail.com?subject=Hello%20from%20your%20Portfolio!&body=Hi%20Elyees,%0D%0A%0D%0AI%20found%20your%20portfolio%20and%20would%20love%20to%20connect!"
                   onMouseEnter={() => setCursorVariant('hover')}
                   onMouseLeave={() => setCursorVariant('default')}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="px-8 py-4 bg-gradient-to-r from-purple-600 to-cyan-600 text-white font-semibold rounded-full hover:shadow-lg hover:shadow-purple-500/25 transition-all"
+                  className="inline-block px-8 py-4 bg-gradient-to-r from-purple-600 to-cyan-600 text-white font-semibold rounded-full hover:shadow-lg hover:shadow-purple-500/25 transition-all"
                 >
                   Get In Touch
-                </motion.button>
+                </motion.a>
                 <motion.a
                   href="https://linkedin.com/in/elyees-tatua"
                   target="_blank"

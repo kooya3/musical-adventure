@@ -7,7 +7,7 @@ export const SITE_CONFIG = {
   links: {
     github: "https://github.com/kooya3",
     linkedin: "https://linkedin.com/in/elyees-tatua",
-    email: "elyees.tatua@example.com"
+    email: "elyees.dev@gmail.com"
   }
 } as const
 
