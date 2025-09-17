@@ -236,7 +236,7 @@ class AdvancedGLTFLoader {
     let textureCount = 0
     const textures = new Set<THREE.Texture>()
 
-    scene.traverse((object) => {
+    scene.traverse((object: THREE.Object3D) => {
       if (object instanceof THREE.Mesh) {
         // Count polygons
         const geometry = object.geometry
@@ -319,7 +319,7 @@ class AdvancedGLTFLoader {
   private applyPerformanceOptimizations(scene: THREE.Group): void {
     const capabilities = performanceOptimizer.getDeviceCapabilities()
     
-    scene.traverse((object) => {
+    scene.traverse((object: THREE.Object3D) => {
       if (object instanceof THREE.Mesh) {
         // Frustum culling optimization
         object.frustumCulled = true

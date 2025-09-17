@@ -1,13 +1,30 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Figtree, Instrument_Serif } from "next/font/google";
 import "./globals.css";
 import { SITE_CONFIG } from "@/lib/constants";
-// import ModelProvider from "@/contexts/ModelContext";
+import ModelProvider from "@/contexts/ModelContext";
+import StructuredData from "@/components/StructuredData";
+import { Analytics } from "@vercel/analytics/next";
 
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
   display: "swap",
+});
+
+const figtree = Figtree({
+  variable: "--font-figtree",
+  subsets: ["latin"],
+  display: "swap",
+  weight: ["300", "400", "500", "600", "700"],
+});
+
+const instrumentSerif = Instrument_Serif({
+  variable: "--font-instrument-serif",
+  subsets: ["latin"],
+  display: "swap",
+  weight: ["400"],
+  style: ["normal", "italic"],
 });
 
 export const metadata: Metadata = {
@@ -76,10 +93,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth">
+      <head>
+        <StructuredData />
+      </head>
       <body
-        className={`${inter.variable} font-sans antialiased bg-slate-900 text-white overflow-x-hidden`}
+        className={`${inter.variable} ${figtree.variable} ${instrumentSerif.variable} font-figtree antialiased bg-black text-white overflow-x-hidden`}
       >
-        {children}
+        <ModelProvider autoLoad={true}>
+          {children}
+        </ModelProvider>
+        <Analytics />
       </body>
     </html>
   );

@@ -26,7 +26,7 @@ export default function Loader({ isLoading, onComplete }: LoaderProps) {
 
     const interval = setInterval(() => {
       setProgress(prev => {
-        const newProgress = Math.min(prev + Math.random() * 15 + 5, 100)
+        const newProgress = Math.min(prev + 8, 100)
         
         // Update loading text based on progress
         const stepIndex = Math.floor((newProgress / 100) * (loadingSteps.length - 1))
@@ -67,26 +67,41 @@ export default function Loader({ isLoading, onComplete }: LoaderProps) {
             <div className="absolute inset-0 bg-gradient-to-r from-blue-600/10 via-purple-600/10 to-cyan-600/10 animate-pulse" />
             
             {/* Floating particles */}
-            {[...Array(20)].map((_, i) => (
-              <motion.div
-                key={i}
-                className="absolute w-2 h-2 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full opacity-30"
-                style={{
-                  left: `${Math.random() * 100}%`,
-                  top: `${Math.random() * 100}%`,
-                }}
-                animate={{
-                  y: [0, -100, 0],
-                  opacity: [0.3, 0.8, 0.3],
-                  scale: [0.5, 1, 0.5],
-                }}
-                transition={{
-                  duration: 3 + Math.random() * 2,
-                  repeat: Infinity,
-                  delay: Math.random() * 2,
-                }}
-              />
-            ))}
+            {[...Array(20)].map((_, i) => {
+              // Use deterministic positioning based on index to avoid hydration mismatch
+              const positions = [
+                { left: 15, top: 20 }, { left: 85, top: 10 }, { left: 25, top: 80 }, 
+                { left: 75, top: 70 }, { left: 5, top: 50 }, { left: 95, top: 30 },
+                { left: 45, top: 15 }, { left: 35, top: 90 }, { left: 65, top: 25 },
+                { left: 55, top: 85 }, { left: 12, top: 65 }, { left: 88, top: 45 },
+                { left: 32, top: 12 }, { left: 78, top: 88 }, { left: 22, top: 55 },
+                { left: 68, top: 18 }, { left: 42, top: 75 }, { left: 58, top: 35 },
+                { left: 18, top: 92 }, { left: 82, top: 8 }
+              ]
+              const delays = [0, 0.2, 0.4, 0.6, 0.8, 1.0, 1.2, 1.4, 1.6, 1.8, 0.1, 0.3, 0.5, 0.7, 0.9, 1.1, 1.3, 1.5, 1.7, 1.9]
+              const durations = [3, 3.5, 4, 4.5, 5, 3.2, 3.8, 4.2, 4.8, 5.2, 3.1, 3.7, 4.1, 4.7, 5.1, 3.3, 3.9, 4.3, 4.9, 5.3]
+              
+              return (
+                <motion.div
+                  key={i}
+                  className="absolute w-2 h-2 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full opacity-30"
+                  style={{
+                    left: `${positions[i]?.left || 50}%`,
+                    top: `${positions[i]?.top || 50}%`,
+                  }}
+                  animate={{
+                    y: [0, -100, 0],
+                    opacity: [0.3, 0.8, 0.3],
+                    scale: [0.5, 1, 0.5],
+                  }}
+                  transition={{
+                    duration: durations[i] || 4,
+                    repeat: Infinity,
+                    delay: delays[i] || 0,
+                  }}
+                />
+              )
+            })}
           </div>
 
           <div className="relative z-10 text-center max-w-md mx-auto px-6">

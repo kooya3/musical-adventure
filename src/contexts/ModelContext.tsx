@@ -1,6 +1,7 @@
 "use client"
 
 import React, { createContext, useContext, useReducer, useEffect, ReactNode } from 'react'
+import * as THREE from 'three'
 import { modelLoader, ModelConfig, LoadedModel, PORTFOLIO_MODELS } from '@/lib/gltf-loader'
 
 export interface ModelState {

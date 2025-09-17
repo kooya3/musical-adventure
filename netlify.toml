@@ -1,0 +1,36 @@
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
+[build.environment]
+  NEXT_USE_NETLIFY_EDGE = "true"
+
+[[redirects]]
+  from = "/*"
+  to = "/404.html"
+  status = 404
+
+[[headers]]
+  for = "/*.js"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.css"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.glb"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
+    Access-Control-Allow-Origin = "*"
+
+[[headers]]
+  for = "/*.gltf"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
+    Access-Control-Allow-Origin = "*"

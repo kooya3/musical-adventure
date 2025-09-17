@@ -4,8 +4,8 @@
  */
 
 import * as THREE from 'three'
-import { GLTF, GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
-import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader'
+import { GLTF, GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
+import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js'
 
 export interface ModelConfig {
   name: string
@@ -35,8 +35,8 @@ export interface ModelLoadProgress {
 }
 
 class GLTFModelLoader {
-  private loader: GLTFLoader
-  private dracoLoader: DRACOLoader
+  private loader!: GLTFLoader
+  private dracoLoader!: DRACOLoader
   private loadedModels: Map<string, LoadedModel> = new Map()
   private loadingPromises: Map<string, Promise<LoadedModel>> = new Map()
   private basePath: string
