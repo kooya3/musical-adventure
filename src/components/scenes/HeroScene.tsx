@@ -276,13 +276,15 @@ export default function HeroScene() {
                   duration: ANIMATIONS.duration.medium 
                 }}
               >
-                <motion.button 
-                  className="px-8 py-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold rounded-full transition-all duration-300"
+                <motion.a 
+                  href="/Elyees_Tatua_CV_2025.pdf"
+                  download="Elyees_Tatua_CV_2025.pdf"
+                  className="inline-block px-8 py-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold rounded-full transition-all duration-300"
                   whileHover={{ scale: 1.05, boxShadow: "0 10px 30px rgba(99, 102, 241, 0.4)" }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  View My Work
-                </motion.button>
+                  Download CV
+                </motion.a>
                 <motion.a
                   href="mailto:elyees.dev@gmail.com?subject=Hello%20from%20your%20Portfolio!&body=Hi%20Elyees,%0D%0A%0D%0AI%20found%20your%20portfolio%20and%20would%20love%20to%20connect!"
                   className="inline-block px-8 py-3 border-2 border-white/20 text-white hover:border-white/40 hover:bg-white/10 font-semibold rounded-full transition-all duration-300"

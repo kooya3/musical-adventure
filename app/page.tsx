@@ -150,8 +150,18 @@ export default function Home() {
   ]
 
   const handleProjectClick = (project: typeof projectsData[0]) => {
-    setSelectedProject(project)
-    setIsPortalOpen(true)
+    // Map project IDs to the new routing structure
+    const projectRouteMap: Record<string, string> = {
+      'hackathon-ai-winner': 'ai-manual',
+      'yc-saas-platform': 'ecommerce-platform',
+      'ecommerce-nextjs': 'ecommerce-platform',
+      'real-estate-platform': 'real-estate',
+      'fitness-tracker': 'elyssa-gym',
+      'music-streaming': 'music-web-app'
+    }
+    
+    const routeId = projectRouteMap[project.id] || project.id
+    window.location.href = `/projects/${routeId}`
   }
 
   const closePortal = () => {
@@ -350,14 +360,15 @@ export default function Home() {
               </motion.a>
 
               <motion.a
-                href="/resume.pdf"
+                href="/Elyees_Tatua_CV_2025.pdf"
+                download="Elyees_Tatua_CV_2025.pdf"
                 onMouseEnter={() => setCursorVariant('hover')}
                 onMouseLeave={() => setCursorVariant('default')}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="px-8 py-4 border border-white/20 text-white font-semibold rounded-full hover:bg-white/5 transition-all"
               >
-                Download Resume
+                Download CV
               </motion.a>
             </motion.div>
 
@@ -693,7 +704,7 @@ export default function Home() {
                         }}
                         className="px-4 py-2 rounded-xl bg-gradient-to-r from-purple-600 to-cyan-600 text-white text-xs font-bold hover:shadow-lg hover:shadow-purple-500/25 transition-all"
                       >
-                        Open Portal
+                        View Details
                       </CardItem>
                     </div>
                     </CardBody>
